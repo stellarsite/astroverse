@@ -6,6 +6,8 @@ import partytown from "@astrojs/partytown";
 import pagefind from "astro-pagefind";
 import icon from "astro-icon";
 import tailwind from "@astrojs/tailwind";
+import netlify from '@astrojs/netlify/functions';
+
 
 // https://astro.build/config
 export default defineConfig({
