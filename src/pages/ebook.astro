@@ -15,11 +15,12 @@ const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
   </div>
 </BaseLayout>
 
-<script define:vars={{ stripePublishableKey }}>
-  import { loadStripe } from '@stripe/stripe-js';
+<!-- Load Stripe.js -->
+<script src="https://js.stripe.com/v3/"></script>
 
+<script is:inline define:vars={{ stripePublishableKey }}>
   async function initializeStripe() {
-    const stripe = await loadStripe(stripePublishableKey);
+    const stripe = Stripe(stripePublishableKey);
     const checkoutButton = document.getElementById('checkout-button');
 
     if (checkoutButton) {
