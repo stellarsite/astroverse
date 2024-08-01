@@ -1,0 +1,48 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "@consts";
+import styles from '@styles/buy-ebook.module.scss';
+
+const pageTitle = "Buy Ebook";
+const pageDescription = "Purchase our amazing ebook on digital marketing for realtors.";
+const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class={styles.container}>
+    <h1 class={styles.title}>Buy My Ebook</h1>
+    <button id="checkout-button" class={styles.purchaseButton}>Purchase</button>
+  </div>
+</BaseLayout>
+
+<script define:vars={{ stripePublishableKey }}>
+  import { loadStripe } from '@stripe/stripe-js';
+
+  async function initializeStripe() {
+    const stripe = await loadStripe(stripePublishableKey);
+    const checkoutButton = document.getElementById('checkout-button');
+
+    if (checkoutButton) {
+      checkoutButton.addEventListener('click', async () => {
+        const response = await fetch('/api/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ebookTitle: 'My Amazing Ebook', price: 9.99 })
+        });
+        const { id } = await response.json();
+        
+        const result = await stripe.redirectToCheckout({
+          sessionId: id
+        });
+
+        if (result.error) {
+          console.error(result.error.message);
+        }
+      });
+    } else {
+      console.error('Checkout button not found');
+    }
+  }
+
+  initializeStripe();
+</script>

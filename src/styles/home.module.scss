@@ -6,15 +6,16 @@
     grid-row-gap: 20px;
 
     > a {
-        background: white;
+    
         padding: 20px;
         border-radius: 10px;
         display: block;
         position: relative;
         text-decoration: none;
-        color: black;
+        color: white;
         transition: all 0.1s ease;
-
+        background-color: black;
+        border: solid 4px black;
         &:hover {
             transform: scale(1.01);
         }
@@ -41,9 +42,7 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: bottom;
-        color: white;
-        border: solid 4px white;
-
+        background-color: black;
         p {
             max-width: 220px;
         }
@@ -55,9 +54,7 @@
         background-size: 100%;
         background-repeat: no-repeat;
         background-position: center;
-        color: white;
-        border: solid 4px white;
-
+        background-color: black;
         p {
             max-width: 240px;
         }
@@ -76,7 +73,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 908px) {
     .hero {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(6, auto);
@@ -99,7 +96,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 580px) {
     .hero {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(6, auto);
@@ -122,17 +119,6 @@
                 margin-top: 50vw;
                 position: relative;
                 z-index: 1;
-
-                &:before {
-                    content: "";
-                    position: absolute;
-                    z-index: -1;
-                    padding-top: 60px;
-                    width: 90%;
-                    top: 0;
-                    left: 0;
-                    background: black;
-                }
             }
 
             p {

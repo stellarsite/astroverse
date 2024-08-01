@@ -13,9 +13,17 @@ export default defineConfig({
   trailingSlash: "ignore",
 
   vite: {
+    ssr: {
+      external: ['node-fetch']
+    },
     css: {
       globalModulePaths: ['/src/styles/global.scss'],
     },
+  },
+  server: {
+    env: {
+      MAILERLITE_API_TOKEN: process.env.MAILERLITE_API_TOKEN,
+    }
   },
 
   prefetch: {
@@ -60,4 +68,5 @@ export default defineConfig({
     }),
     
   ],
+  output: 'hybrid',
 });

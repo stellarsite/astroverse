@@ -10,6 +10,11 @@
     margin: auto;
 }
 
+footer, header{
+    font-family: "Archivo Black", sans-serif;
+    text-transform: uppercase;
+}
+
 .heading {
     font-family: "Archivo Black", sans-serif;
     text-transform: uppercase;
@@ -21,12 +26,12 @@
     margin-bottom: 12px;
 }
 
-.header span.logo {
+span.logo {
     text-transform: uppercase;
+    font-size: 48px;
 }
 
 img.logo {
-    filter: invert(100%);
     width: 33px;
     margin-right: 1px;
 }

@@ -1,0 +1,51 @@
+---
+// MailerLiteForm.astro
+---
+
+<form id="subscribe-form">
+  <input
+    type="email"
+    id="email-input"
+    required
+    placeholder="Enter your email"
+  />
+  <button type="submit">Subscribe</button>
+  <p id="message"></p>
+</form>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('subscribe-form') as HTMLFormElement | null;
+    const emailInput = document.getElementById('email-input') as HTMLInputElement | null;
+    const messageElement = document.getElementById('message');
+
+    if (form && emailInput && messageElement) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = emailInput.value;
+
+        try {
+          const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+          });
+
+          const data = await response.json();
+          messageElement.textContent = data.message;
+
+          if (response.ok) {
+            emailInput.value = '';
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          messageElement.textContent = 'An error occurred. Please try again.';
+        }
+      });
+    } else {
+      console.error('One or more elements not found');
+    }
+  });
+</script>

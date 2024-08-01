@@ -16,27 +16,27 @@ const latestPost = allPosts[0];
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
  
 
-  <div class="website-grid">
-    <div class={styles.hero}>
-      <a href="#coming-soon" class={styles.course}>
+  <div class="">
+    <div class={`${styles.hero}`}>
+      <a href="#coming-soon" class={`${styles.course} dark:border-white`}>
         <h2 class="heading"></h2>
         <p>Unlock the secrets of digital marketing for realtors. Our course covers everything from building a strong online presence to mastering lead generation, social, and much more.</p>
         <span class={styles.ctaSpan}>Enroll Now</span>
       </a>
 
-      <a href="#coming-soon" class={styles.newsletter}>
+      <a href="#coming-soon" class={`${styles.newsletter} dark:border-white`}>
         <h2 class="heading">Realty Reach Newsletter</h2>
         <p>Stay informed with the latest tips on enhancing your digital presence, generating leads online, and utilizing technology to streamline your real estate business. Perfect for realtors who want to thrive in the digital age.</p>
         <span class={styles.ctaSpan}>Sign Up Now</span>
       </a>
 
-      <a href={`/posts/${latestPost.slug}`} class={styles.post}>
+      <a href={`/posts/${latestPost.slug}`} class={`${styles.post} dark:border-white`}>
         <h2 class="heading">{latestPost.data.title}</h2>
         <p>{latestPost.data.description}</p>
         <span class={styles.ctaSpan}>Read More</span>
       </a>
 
-      <a href="/posts" class={styles.blog}>
+      <a href="/posts" class={`${styles.blog} dark:border-white`}>
         <h2 class="heading">Blog</h2>
         <p>Dive into our blog for the latest insights on digital marketing strategies, tech tools, and tips for realtors looking to enhance their online presence and engage with clients more effectively.</p>
         <span class={styles.ctaSpan}>Read More</span>

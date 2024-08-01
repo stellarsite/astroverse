@@ -4,11 +4,11 @@ import { Icon } from "astro-icon/components";
 import { SITE_TITLE, HeaderLinks } from "@consts";
 ---
 
-<header class="flex flex-wrap md:justify-start md:flex-nowrap z-50 website-grid py-7">
+<header class="flex flex-wrap md:justify-start md:flex-nowrap z-50  py-7">
   <nav class="relative flex flex-wrap md:grid md:grid-cols-12 basis-full items-center mx-auto" aria-label="Global">
     <div class="md:col-span-6">
       <a class=" flex items-center flex-none text-xl font-semibold text-neutral-900 hover:text-neutral-600 dark:text-white dark:hover:text-neutral-200" href="/" aria-label="Realty Reach">
-        <img src="https://web.readrealtyreach.com/realtyreachsquare.png" alt="" class="logo invert">{SITE_TITLE}
+        <img src="https://web.readrealtyreach.com/realtyreachsquare.png" alt="" class="logo dark:invert"><span class="logo">{SITE_TITLE}</span>
       </a>
     </div>
 
@@ -37,7 +37,7 @@ import { SITE_TITLE, HeaderLinks } from "@consts";
           HeaderLinks.map((link) => (
             <Link
               href={link.href}
-              class="px-4 py-3 font-medium text-neutral-900 hover:text-neutral-600 dark:text-neutral-400 dark:hover:text-neutral-200"
+              class="px-4 py-3 font-medium text-neutral-900 hover:text-neutral-600 dark:text-white dark:hover:text-neutral-200"
             >
               {link.title}
             </Link>

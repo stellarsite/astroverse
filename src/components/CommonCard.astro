@@ -11,7 +11,7 @@ const { post } = Astro.props;
 ---
 
 <div
-  class="relative overflow-hidden rounded-xl bg-white transition-transform duration-500 hover:-translate-y-1 hover:scale-105 dark:bg-neutral-900"
+  class="relative overflow-hidden rounded-l bg-white transition-transform duration-500 hover:-translate-y-1 hover:scale-105 dark:bg-neutral-900"
 >
   <a href={`/posts/${post.slug}/`} class="block">
     <OptimizedCover src={post.data.cover} alt={post.data.coverAlt} />
