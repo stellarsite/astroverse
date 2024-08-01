@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.website-grid {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.heading {
+    font-family: "Archivo Black", sans-serif;
+    text-transform: uppercase;
+}
+
+.header {
+    color: white;
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.header span.logo {
+    text-transform: uppercase;
+}
+
+img.logo {
+    filter: invert(100%);
+    width: 33px;
+    margin-right: 1px;
+}
+

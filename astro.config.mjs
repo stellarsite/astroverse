@@ -9,8 +9,14 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://verse-astro.vercel.app/",
-  trailingSlash: "always",
+  site: "https://readrealtyreach.com/",
+  trailingSlash: "ignore",
+
+  vite: {
+    css: {
+      globalModulePaths: ['/src/styles/global.scss'],
+    },
+  },
 
   prefetch: {
     prefetchAll: true,

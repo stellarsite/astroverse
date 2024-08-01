@@ -1,10 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import HeroCard from "@components/HeroCard.astro";
-import Card from "@components/CommonCard.astro";
-import Pagination from "@components/Pagination.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "@consts";
+import styles from '@styles/home.module.scss';
 
 const allPosts = await getCollection("posts");
 allPosts.sort(
@@ -12,34 +10,39 @@ allPosts.sort(
     new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
 );
 
-const postsPerPage = 15;
-const firstPagePosts = allPosts.slice(0, postsPerPage);
-const totalPages = Math.ceil(allPosts.length / postsPerPage);
-
-const basePath = "/page/";
+const latestPost = allPosts[0];
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <div class="grid grid-cols-1">
-    <div class="col-span-1 mb-4">
-      {firstPagePosts.length > 0 && <HeroCard post={firstPagePosts[0]} />}
-    </div>
+ 
 
-    <div class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
-      {firstPagePosts.slice(1, 3).map((post) => <Card post={post} />)}
-    </div>
+  <div class="website-grid">
+    <div class={styles.hero}>
+      <a href="#coming-soon" class={styles.course}>
+        <h2 class="heading"></h2>
+        <p>Unlock the secrets of digital marketing for realtors. Our course covers everything from building a strong online presence to mastering lead generation, social, and much more.</p>
+        <span class={styles.ctaSpan}>Enroll Now</span>
+      </a>
 
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {firstPagePosts.slice(3).map((post) => <Card post={post} />)}
+      <a href="#coming-soon" class={styles.newsletter}>
+        <h2 class="heading">Realty Reach Newsletter</h2>
+        <p>Stay informed with the latest tips on enhancing your digital presence, generating leads online, and utilizing technology to streamline your real estate business. Perfect for realtors who want to thrive in the digital age.</p>
+        <span class={styles.ctaSpan}>Sign Up Now</span>
+      </a>
+
+      <a href={`/posts/${latestPost.slug}`} class={styles.post}>
+        <h2 class="heading">{latestPost.data.title}</h2>
+        <p>{latestPost.data.description}</p>
+        <span class={styles.ctaSpan}>Read More</span>
+      </a>
+
+      <a href="/posts" class={styles.blog}>
+        <h2 class="heading">Blog</h2>
+        <p>Dive into our blog for the latest insights on digital marketing strategies, tech tools, and tips for realtors looking to enhance their online presence and engage with clients more effectively.</p>
+        <span class={styles.ctaSpan}>Read More</span>
+      </a>
     </div>
   </div>
 
-  <Pagination
-    currentPage={1}
-    lastPage={totalPages}
-    urlPrev={null}
-    urlNext={totalPages > 1 ? `/page/2` : null}
-    basePath={basePath}
-    maxDisplayedPages={5}
-  />
+
 </BaseLayout>
