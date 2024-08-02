@@ -1,7 +1,5 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "@consts";
-import styles from '@styles/buy-ebook.module.scss';
 
 const pageTitle = "Buy Ebook";
 const pageDescription = "Purchase our amazing ebook on digital marketing for realtors.";
@@ -9,10 +7,36 @@ const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <div class={styles.container}>
-    <h1 class={styles.title}>Buy My Ebook</h1>
-    <button id="checkout-button" class={styles.purchaseButton}>Purchase</button>
-  </div>
+  <main id="content">
+    <div class="text-center py-10 px-4 sm:px-6 lg:px-8">
+      <h1 class="block font-archivo-black uppercase text-4xl font-bold text-black sm:text-6xl dark:text-white mb-20">Buy The Ebook</h1>
+      
+      <form id="purchase-form" class="mb-6">
+        <div class="mb-4">
+          <input 
+            type="email" 
+            id="email-input" 
+            required 
+            placeholder="Enter your email" 
+            class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div class="mb-4">
+          <label class="inline-flex items-center">
+            <input type="checkbox" id="newsletter-checkbox" class="form-checkbox">
+            <span class="ml-2">Sign up for our newsletter</span>
+          </label>
+        </div>
+        <button 
+          id="checkout-button" 
+          type="submit"
+          class="w-full sm:w-auto py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-neutral-400 text-white hover:bg-neutral-600 disabled:opacity-50 disabled:pointer-events-none"
+        >
+          Purchase
+        </button>
+      </form>
+    </div>
+  </main>
 </BaseLayout>
 
 <!-- Load Stripe.js -->
@@ -26,26 +50,50 @@ const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
     }
 
     const stripe = Stripe(stripePublishableKey);
-    const checkoutButton = document.getElementById('checkout-button');
+    const purchaseForm = document.getElementById('purchase-form');
+    const emailInput = document.getElementById('email-input');
+    const newsletterCheckbox = document.getElementById('newsletter-checkbox');
 
-    if (checkoutButton) {
-      checkoutButton.addEventListener('click', async () => {
+    if (purchaseForm && emailInput && newsletterCheckbox) {
+      purchaseForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = emailInput.value;
+        const subscribeToNewsletter = newsletterCheckbox.checked;
+
         try {
-          const response = await fetch('/api/create-checkout-session', {
+          // First, create the checkout session
+          const checkoutResponse = await fetch('/api/create-checkout-session', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ebookTitle: 'The Real Estate Agent Digital Presence A-Z Guide', price: 9.99 })
+            body: JSON.stringify({ 
+              ebookTitle: 'The Real Estate Agent Digital Presence A-Z Guide', 
+              price: 9.99,
+              customerEmail: email
+            })
           });
           
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+          if (!checkoutResponse.ok) {
+            throw new Error(`HTTP error! status: ${checkoutResponse.status}`);
           }
           
-          const { id } = await response.json();
-          
-          const result = await stripe.redirectToCheckout({
-            sessionId: id
-          });
+          const { id: sessionId } = await checkoutResponse.json();
+
+          // If user wants to subscribe to the newsletter, make the API call
+          if (subscribeToNewsletter) {
+            const subscribeResponse = await fetch('/api/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email })
+            });
+
+            if (!subscribeResponse.ok) {
+              console.error('Failed to subscribe to newsletter');
+            }
+          }
+
+          // Redirect to Stripe Checkout
+          const result = await stripe.redirectToCheckout({ sessionId });
 
           if (result.error) {
             console.error(result.error.message);
@@ -55,7 +103,7 @@ const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
         }
       });
     } else {
-      console.error('Checkout button not found');
+      console.error('One or more form elements not found');
     }
   });
 </script>

@@ -37,6 +37,8 @@ export default {
         "Courier New",
         "monospace",
       ],
+      'archivo-black': ['Archivo Black', 'sans-serif'], // Add this line
+
     },
     extend: {
       backgroundImage: {

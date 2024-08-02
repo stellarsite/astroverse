@@ -29,6 +29,7 @@ export async function POST({ request }) {
       mode: 'payment',
       success_url: `${siteUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/cancel`,
+      customer_email: data.customerEmail, // Add this line
     });
 
     return new Response(JSON.stringify({ id: session.id }), {
