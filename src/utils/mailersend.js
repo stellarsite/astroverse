@@ -1,4 +1,4 @@
-// /utils/mailer.js
+// /utils/mailersend.js
 import fetch from 'node-fetch';
 
 export async function sendEmail(to, subject, content) {
@@ -11,7 +11,7 @@ export async function sendEmail(to, subject, content) {
     },
     body: JSON.stringify({
       from: {
-        email: 'your-email@domain.com',
+        email: 'hello@trial-vywj2lpypp1l7oqz.mlsender.net',
       },
       to: [
         {
