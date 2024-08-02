@@ -44,12 +44,12 @@ const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
 
 <script is:inline define:vars={{ stripePublishableKey }}>
   document.addEventListener('DOMContentLoaded', () => {
-    if (typeof stripe === 'undefined') {
+    if (typeof Stripe === 'undefined') {
       console.error('Stripe.js not loaded');
       return;
     }
 
-    const stripe = stripe(stripePublishableKey);
+    const stripe = Stripe(stripePublishableKey);
     const purchaseForm = document.getElementById('purchase-form');
     const emailInput = document.getElementById('email-input');
     const newsletterCheckbox = document.getElementById('newsletter-checkbox');
