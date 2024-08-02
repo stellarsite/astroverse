@@ -1,6 +1,6 @@
 // /api/stripe-webhook.js
 import Stripe from 'stripe';
-import { sendEmail } from '@/utils/mailersend'; // We'll create this utility function
+import { sendEmail } from '@utils/mailersend';
 
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
 const endpointSecret = import.meta.env.STRIPE_WEBHOOK_SECRET;
