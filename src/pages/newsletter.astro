@@ -8,24 +8,53 @@ const SUBSCRIBE_DESCRIPTION = "Stay updated with the latest real estate digital 
 ---
 
 <BaseLayout title={`${SITE_TITLE} - Subscribe`} description={SUBSCRIBE_DESCRIPTION}>
-  <div class="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-    <div class="dark:text-white">
-      <h1 class="text-3xl font-bold mb-4 heading">{SUBSCRIBE_TITLE}</h1>
-      <p class="mb-6">{SUBSCRIBE_DESCRIPTION}</p>
-      
-      <div class="">
-        <MailerLiteForm />
+  <main class="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4 heading dark:text-white">{SUBSCRIBE_TITLE}</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-300">{SUBSCRIBE_DESCRIPTION}</p>
+    </div>
+    
+    <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8 mb-12">
+      <MailerLiteForm />
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="dark:text-white">
+        <h2 class="text-2xl font-semibold mb-4 heading">Why Subscribe?</h2>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>Get the latest digital marketing strategies for realtors</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>Receive tips on enhancing your online presence</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>Learn about new tech tools to streamline your business</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>Access exclusive content and offers</span>
+          </li>
+        </ul>
       </div>
-      
-      <div class="dark:text-white mt-10">
-        <h2 class="text-xl font-semibold mb-3 heading">Why Subscribe?</h2>
-        <ul class="list-disc pl-5">
-          <li>Get the latest digital marketing strategies for realtors</li>
-          <li>Receive tips on enhancing your online presence</li>
-          <li>Learn about new tech tools to streamline your business</li>
-          <li>Access exclusive content and offers</li>
+      <div class="dark:text-white">
+        <h2 class="text-2xl font-semibold mb-4 heading">What to Expect</h2>
+        <p class="mb-4">Our newsletter is designed to provide you with valuable insights and practical advice to boost your real estate business in the digital age. Each issue includes:</p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>In-depth articles on digital marketing trends</li>
+          <li>Step-by-step guides for implementing new strategies</li>
+          <li>Case studies of successful real estate professionals</li>
+          <li>Curated resources and tool recommendations</li>
+          <li>Exclusive discounts on our products and services</li>
         </ul>
       </div>
     </div>
-  </div>
+    
+    <div class="mt-12 text-center">
+      <p class="text-gray-600 dark:text-gray-300">Join our community of forward-thinking real estate professionals today!</p>
+    </div>
+  </main>
 </BaseLayout>

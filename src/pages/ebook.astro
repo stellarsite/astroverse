@@ -7,32 +7,52 @@ const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <main id="content">
-    <div class="text-center py-10 px-4 sm:px-6 lg:px-8">
-      <h1 class="block font-archivo-black uppercase text-3xl font-bold text-black sm:text-5xl dark:text-white mb-20">Buy The Ebook</h1>
-      
-      <form id="purchase-form" class="mb-6">
-        <div class="mb-4">
+  <main id="content" class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl heading font-bold text-center mb-8 dark:text-white">The Real Estate Agent Digital Strategy Handbook</h1>
+    
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+      <div>
+        <img src="/redscover.webp" alt="Ebook Cover" class="w-auto max-h-[600px] m-auto"/>
+      </div>
+      <div>
+        <h2 class="text-2xl font-semibold mb-4 dark:text-white">Transform Your Online Presence</h2>
+        <p class="mb-4 dark:text-gray-300">Unlock the secrets to dominating the digital real estate landscape with our comprehensive guide. Whether you're a seasoned pro or just starting out, this ebook provides the strategies and insights you need to thrive in the online world.</p>
+        <h3 class="text-xl font-semibold mb-2 dark:text-white">What You'll Learn:</h3>
+        <ul class="list-disc list-inside mb-4 dark:text-gray-300">
+          <li>Creating a powerful, conversion-focused website</li>
+          <li>Mastering SEO for local real estate markets</li>
+          <li>Developing a content strategy that showcases your expertise</li>
+          <li>Leveraging social media for lead generation</li>
+          <li>Implementing advanced features and functionalities</li>
+          <li>Measuring success and continuously improving your online presence</li>
+        </ul>
+        <p class="font-semibold dark:text-white">Price: $9.99</p>
+      </div>
+    </div>
+
+    <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg max-w-md mx-auto">
+      <h2 class="text-2xl font-semibold mb-4 text-center dark:text-white">Purchase Now</h2>
+      <form id="purchase-form" class="space-y-4">
+        <div>
+          <label for="email-input" class="block mb-2 dark:text-white">Email Address</label>
           <input 
             type="email" 
             id="email-input" 
             required 
             placeholder="Enter your email" 
-            class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+            class="w-full px-3 py-2 text-sm text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
           />
         </div>
-        <div class="mb-4  dark:text-white">
-          <label class="inline-flex items-center">
-            <input type="checkbox" id="newsletter-checkbox" class="form-checkbox">
-            <span class="ml-2">Sign up for our newsletter</span>
-          </label>
+        <div class="flex items-center">
+          <input type="checkbox" id="newsletter-checkbox" class="form-checkbox">
+          <label for="newsletter-checkbox" class="ml-2 dark:text-white">Sign up for our newsletter</label>
         </div>
         <button 
           id="checkout-button" 
           type="submit"
-          class="w-full sm:w-auto py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-neutral-400 text-white hover:bg-neutral-600 disabled:opacity-50 disabled:pointer-events-none"
+          class="w-full py-3 px-4 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 transition duration-300 ease-in-out"
         >
-          Purchase
+          Buy Now
         </button>
       </form>
     </div>
