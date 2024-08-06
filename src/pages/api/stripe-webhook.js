@@ -11,12 +11,12 @@ export async function POST({ request }) {
   console.log('Webhook received');
   
   let event;
-  let payload;
+  let rawBody;
 
   try {
-    // Parse the JSON payload directly
-    payload = await request.json();
-    console.log('Payload received:', JSON.stringify(payload));
+    // Get the raw body as text
+    rawBody = await request.text();
+    console.log('Raw body received:', rawBody);
 
     const sig = request.headers.get('stripe-signature');
 
@@ -25,8 +25,8 @@ export async function POST({ request }) {
       return new Response('Missing signature or endpoint secret', { status: 400 });
     }
 
-    // Construct the event using the JSON string
-    event = stripe.webhooks.constructEvent(JSON.stringify(payload), sig, endpointSecret);
+    // Use the raw body for constructing the event
+    event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
     console.log('Event constructed successfully:', event.type);
 
   } catch (err) {
@@ -48,7 +48,6 @@ export async function POST({ request }) {
         console.log('Email sent successfully');
       } catch (emailError) {
         console.error('Error sending email:', emailError);
-        // Decide how to handle email errors (e.g., retry, log, or ignore)
       }
     } else {
       console.log('Unhandled event type:', event.type);
