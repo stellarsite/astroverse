@@ -1,4 +1,3 @@
-// /api/stripe-webhook.js
 import Stripe from 'stripe';
 import { sendEmail } from '@utils/mailersend';
 
@@ -8,7 +7,7 @@ const endpointSecret = import.meta.env.STRIPE_WEBHOOK_SECRET;
 export const prerender = false;
 
 export async function POST({ request }) {
-  console.log('Webhook received');
+  console.log('Webhook received at readrealtyreach.ca');
   
   let event;
 
@@ -16,7 +15,8 @@ export async function POST({ request }) {
     const payload = await request.text();
     const sig = request.headers.get('stripe-signature');
 
-    console.log('Payload received, signature:', sig);
+    console.log('Payload received, signature:', sig ? 'Present' : 'Missing');
+    console.log('Endpoint secret:', endpointSecret ? 'Set' : 'Not set');
 
     if (!sig || !endpointSecret) {
       console.error('Missing signature or endpoint secret');
@@ -36,7 +36,6 @@ export async function POST({ request }) {
       const session = event.data.object;
       console.log('Processing completed checkout for:', session.customer_email);
       
-      // Send email with ebook download link
       await sendEmail(
         session.customer_email, 
         'Your ebook download', 
