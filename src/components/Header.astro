@@ -6,7 +6,7 @@ import { SITE_TITLE, HeaderLinks } from "@consts";
 
 <header class="flex flex-wrap md:justify-start md:flex-nowrap z-50  py-7">
   <nav class="relative flex flex-wrap md:grid md:grid-cols-12 basis-full items-center mx-auto" aria-label="Global">
-    <div class="md:col-span-6">
+    <div class="md:col-span-5 lg:col-span-6">
       <a class="flex items-center text-lg sm:text-xl font-semibold text-neutral-900 hover:text-neutral-600 dark:text-white dark:hover:text-neutral-200" href="/" aria-label="Realty Reach">
         <img src="https://web.readrealtyreach.com/realtyreachsquare.png" alt="" class="w-4 sm:w-6 mr-1 lg:w-8 logo dark:invert">
         <span class="logo text-2xl sm:text-4xl lg:text-5xl">{SITE_TITLE}</span>
@@ -32,13 +32,13 @@ import { SITE_TITLE, HeaderLinks } from "@consts";
       
     </div>
 
-    <div id="navbar-collapse-with-animation" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow md:block md:w-auto md:basis-auto md:order-2 md:col-span-5">
+    <div id="navbar-collapse-with-animation" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow md:block md:w-auto md:basis-auto md:order-2 md:col-span-6 lg:col-span-5">
       <div class="flex flex-col gap-y-4 gap-x-0 mt-5 md:flex-row md:justify-end md:items-center md:gap-y-0 md:gap-x-7 md:mt-0">
         {
           HeaderLinks.map((link) => (
             <Link
               href={link.href}
-              class="px-4 py-3 font-medium text-neutral-900 hover:text-neutral-600 dark:text-white dark:hover:text-neutral-200"
+              class="px-2 lg:px-4 py-3 font-medium text-neutral-900 hover:text-neutral-600 dark:text-white dark:hover:text-neutral-200"
             >
               {link.title}
             </Link>
