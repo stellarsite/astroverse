@@ -1,3 +1,4 @@
+// src/pages/api/stripe-webhook.js
 import Stripe from 'stripe';
 import { sendEmail } from '@utils/mailersend';
 
@@ -7,23 +8,23 @@ const endpointSecret = import.meta.env.STRIPE_WEBHOOK_SECRET;
 export const prerender = false;
 
 export async function POST({ request }) {
-  console.log('Webhook received at readrealtyreach.ca');
+  console.log('Webhook received');
   
   let event;
+  let rawBody;
 
   try {
-    const payload = await request.text();
-    const sig = request.headers.get('stripe-signature');
+    rawBody = await request.text();
+    console.log('Raw body received:', rawBody);
 
-    console.log('Payload received, signature:', sig ? 'Present' : 'Missing');
-    console.log('Endpoint secret:', endpointSecret ? 'Set' : 'Not set');
+    const sig = request.headers.get('stripe-signature');
 
     if (!sig || !endpointSecret) {
       console.error('Missing signature or endpoint secret');
       return new Response('Missing signature or endpoint secret', { status: 400 });
     }
 
-    event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
+    event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
     console.log('Event constructed successfully:', event.type);
 
   } catch (err) {
