@@ -32,13 +32,10 @@ footer, header{
     margin-bottom: 12px;
 }
 
-span.logo {
-    text-transform: uppercase;
-    font-size: 48px;
-}
 
-img.logo {
-    width: 33px;
-    margin-right: 1px;
-}
+@media (max-width: 349px) {
+    .hide-below-350 {
+      display: none !important;
+    }
+  }
 

@@ -2,7 +2,6 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import MailerLiteForm from "@components/MailerLiteForm.astro";
 import { SITE_TITLE } from "@consts";
-import styles from '@styles/newsletter.module.scss';
 
 const SUBSCRIBE_TITLE = "Subscribe to Our Newsletter";
 const SUBSCRIBE_DESCRIPTION = "Stay updated with the latest real estate digital marketing trends and tips.";
@@ -10,16 +9,16 @@ const SUBSCRIBE_DESCRIPTION = "Stay updated with the latest real estate digital 
 
 <BaseLayout title={`${SITE_TITLE} - Subscribe`} description={SUBSCRIBE_DESCRIPTION}>
   <div class="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-    <div class={styles.subscribeContainer}>
-      <h1 class="text-3xl font-bold mb-4">{SUBSCRIBE_TITLE}</h1>
+    <div class="dark:text-white">
+      <h1 class="text-3xl font-bold mb-4 heading">{SUBSCRIBE_TITLE}</h1>
       <p class="mb-6">{SUBSCRIBE_DESCRIPTION}</p>
       
-      <div class={styles.formWrapper}>
+      <div class="">
         <MailerLiteForm />
       </div>
       
-      <div class={styles.benefits}>
-        <h2 class="text-xl font-semibold mb-3">Why Subscribe?</h2>
+      <div class="dark:text-white mt-10">
+        <h2 class="text-xl font-semibold mb-3 heading">Why Subscribe?</h2>
         <ul class="list-disc pl-5">
           <li>Get the latest digital marketing strategies for realtors</li>
           <li>Receive tips on enhancing your online presence</li>
