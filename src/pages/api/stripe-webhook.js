@@ -11,11 +11,12 @@ export async function POST({ request }) {
   console.log('Webhook received');
   
   let event;
-  let rawBody;
+  let payload;
 
   try {
-    rawBody = await request.text();
-    console.log('Raw body received:', rawBody);
+    // Parse the JSON payload directly
+    payload = await request.json();
+    console.log('Payload received:', JSON.stringify(payload));
 
     const sig = request.headers.get('stripe-signature');
 
@@ -24,7 +25,8 @@ export async function POST({ request }) {
       return new Response('Missing signature or endpoint secret', { status: 400 });
     }
 
-    event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
+    // Construct the event using the JSON string
+    event = stripe.webhooks.constructEvent(JSON.stringify(payload), sig, endpointSecret);
     console.log('Event constructed successfully:', event.type);
 
   } catch (err) {
@@ -37,12 +39,17 @@ export async function POST({ request }) {
       const session = event.data.object;
       console.log('Processing completed checkout for:', session.customer_email);
       
-      await sendEmail(
-        session.customer_email, 
-        'Your ebook download', 
-        'Thank you for your purchase. Here is your download link: https://web.readrealtyreach.com/rrebookcover.pdf'
-      );
-      console.log('Email sent successfully');
+      try {
+        await sendEmail(
+          session.customer_email, 
+          'Your ebook download', 
+          'Thank you for your purchase. Here is your download link: https://web.readrealtyreach.com/rrebookcover.pdf'
+        );
+        console.log('Email sent successfully');
+      } catch (emailError) {
+        console.error('Error sending email:', emailError);
+        // Decide how to handle email errors (e.g., retry, log, or ignore)
+      }
     } else {
       console.log('Unhandled event type:', event.type);
     }
