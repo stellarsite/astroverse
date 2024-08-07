@@ -42,14 +42,24 @@ export const FooterLinks = [
 export const SocialLinks = [
   { href: "/rss.xml", icon: "tabler:rss", label: "RSS" },
   {
-    href: "https://twitter.com/RealtyReach_",
-    icon: "tabler:brand-twitter",
-    label: "Twitter",
+    href: "https://x.com/RealtyReach_",
+    icon: "tabler:brand-x",
+    label: "X",
   },
   {
     href: "https://instagram.com/realtyreach_",
     icon: "tabler:brand-instagram",
     label: "Instagram",
+  },
+  {
+    href: "https://www.tiktok.com/@realtyreach_",
+    icon: "tabler:brand-tiktok",
+    label: "TikTok",
+  },
+  {
+    href: "https://www.youtube.com/@Realty_Reach",
+    icon: "tabler:brand-youtube",
+    label: "Youtube",
   },
 ];
 
